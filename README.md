@@ -21,8 +21,8 @@ There are many examples of how to use it on the developer guide [section for mne
 
 ```javascript
 var Mnemonic = require('bitcore-mnemonic');
-var code = new Mnemonic(Mnemonic.Words.SPANISH);
-code.toString(); // natal hada sutil año sólido papel jamón combate aula flota ver esfera...
+var code = new Mnemonic(Mnemonic.Words.ENGLISH);
+code.toString();
 var xpriv = code.toHDPrivateKey();
 ```
 
