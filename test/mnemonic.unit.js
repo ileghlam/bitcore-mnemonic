@@ -50,54 +50,12 @@ describe('Mnemonic', function() {
         var mnemonic = new Mnemonic();
         mnemonic.wordlist.should.equal(Mnemonic.Words.ENGLISH);
       });
-
-      it('allow using different worldlists', function() {
-        var mnemonic = new Mnemonic(Mnemonic.Words.SPANISH);
-        mnemonic.wordlist.should.equal(Mnemonic.Words.SPANISH);
-      });
-
-      it('constructor honor both length and wordlist', function() {
-        var mnemonic = new Mnemonic(32 * 7, Mnemonic.Words.SPANISH);
-        mnemonic.phrase.split(' ').length.should.equal(21);
-        mnemonic.wordlist.should.equal(Mnemonic.Words.SPANISH);
-      });
-
-      it('constructor should detect standard wordlist', function() {
-        var mnemonic = new Mnemonic('afirmar diseño hielo fideo etapa ogro cambio fideo toalla pomelo número buscar');
-        mnemonic.wordlist.should.equal(Mnemonic.Words.SPANISH);
-      });
-
     });
 
 
     it('english wordlist is complete', function() {
       Mnemonic.Words.ENGLISH.length.should.equal(2048);
       Mnemonic.Words.ENGLISH[0].should.equal('abandon');
-    });
-
-    it('spanish wordlist is complete', function() {
-      Mnemonic.Words.SPANISH.length.should.equal(2048);
-      Mnemonic.Words.SPANISH[0].should.equal('ábaco');
-    });
-
-    it('japanese wordlist is complete', function() {
-      Mnemonic.Words.JAPANESE.length.should.equal(2048);
-      Mnemonic.Words.JAPANESE[0].should.equal('あいこくしん');
-    });
-
-    it('chinese wordlist is complete', function() {
-      Mnemonic.Words.CHINESE.length.should.equal(2048);
-      Mnemonic.Words.CHINESE[0].should.equal('的');
-    });
-
-    it('french wordlist is complete', function() {
-      Mnemonic.Words.FRENCH.length.should.equal(2048);
-      Mnemonic.Words.FRENCH[0].should.equal('abaisser');
-    });
-
-    it('italian wordlist is complete', function() {
-      Mnemonic.Words.ITALIAN.length.should.equal(2048);
-      Mnemonic.Words.ITALIAN[0].should.equal('abaco');
     });
 
     it('allows use different phrase lengths', function() {
@@ -118,24 +76,6 @@ describe('Mnemonic', function() {
       mnemonic = new Mnemonic(32 * 8);
       mnemonic.phrase.split(' ').length.should.equal(24);
     });
-
-    it('validates a phrase', function() {
-      var valid = Mnemonic.isValid('afirmar diseño hielo fideo etapa ogro cambio fideo toalla pomelo número buscar');
-      valid.should.equal(true);
-
-      var invalid = Mnemonic.isValid('afirmar diseño hielo fideo etapa ogro cambio fideo hielo pomelo número buscar');
-      invalid.should.equal(false);
-
-      var invalid2 = Mnemonic.isValid('afirmar diseño hielo fideo etapa ogro cambio fideo hielo pomelo número oneInvalidWord');
-      invalid2.should.equal(false);
-
-      var invalid3 = Mnemonic.isValid('totally invalid phrase');
-      invalid3.should.equal(false);
-
-      var valid2 = Mnemonic.isValid('caution opprimer époque belote devenir ficeler filleul caneton apologie nectar frapper fouiller');
-      valid2.should.equal(true);
-    });
-
     it('has a toString method', function() {
       var mnemonic = new Mnemonic();
       mnemonic.toString().should.equal(mnemonic.phrase);
